@@ -1,9 +1,10 @@
 console.log("Hello World");
 
-import moment from'moment;
+import moment from "moment";
 
 const currentTime = moment().format("YYYY MM DD");
-console.log(currentTime)
+console.log(currentTime);
 
-const person: string = "Nolan";
-const count: number = 100;
+// Architectural pattern: MVC, Dependency InjectionI, MVP
+
+// Design pattern: Middleware, Decorator
