@@ -1,5 +1,7 @@
 import express from "express";
-import path from "node:path/win32";
+import path from "path";
+import router from "./router";
+import routerAdmin from "./routerAdmin";
 
 /** 1- ENRTANCE **/
 const app = express();
@@ -8,12 +10,14 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-/** 1- SESSIONS **/
+/** 2- SESSIONS **/
 
-/** 1- VIEWS **/
+/** 3- VIEWS **/
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-/** 1- ROUTERS **/
+/** 4- ROUTERS **/
+app.use("/admin", routerAdmin); // SSR: EJS
+app.use("/", router); // SPA: REACT
 
 export default app; //module.exports
