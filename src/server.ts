@@ -3,13 +3,14 @@ dotenv.config();
 
 import mongoose from "mongoose";
 import app from "./app";
+
 mongoose
   .connect(process.env.MONGO_URL as string, {})
   .then((data) => {
-    console.log("MongoDB connection succeed");
+    console.log("Successfully connected to MongoDB");
     const PORT = process.env.PORT ?? 3003;
-    app.listen(PORT, function () {
-      console.log(`The server is running successfully on prot: ${PORT}`);
+    app.listen(PORT, () => {
+      console.log(`The server is running successfully on PORT: ${PORT}`);
     });
   })
-  .catch((err) => console.log("ERROR on connection on MongoDB", err));
+  .catch((err) => console.error(`ERROR on connection to MongoDB: ${err}`));

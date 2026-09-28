@@ -3,6 +3,6 @@ import { T } from "../libs/types/common";
 
 // REACT
 
-const memeberController: T = {};
+const memberController: T = {};
 
-export default memeberController;
+export default memberController;
