@@ -3,15 +3,15 @@
 // Shunday function yozing, u string qabul qilsin va string palindrom yani togri oqilganda ham, orqasidan oqilganda ham bir hil oqiladigan soz ekanligini aniqlab boolean qiymat qaytarsin.
 
 // MASALAN: palindromCheck("dad") return true;  palindromCheck("son") return false;
-function palindromCheck(str) {
-  return str === str.split("").reverse().join("");
-}
+// function palindromCheck(str) {
+//   return str === str.split("").reverse().join("");
+// }
 
-const result = palindromCheck("dad");
-const result2 = palindromCheck("son");
+// const result = palindromCheck("dad");
+// const result2 = palindromCheck("son");
 
-console.log("Result: ", result);
-console.log("Result2: ", result2);
+// console.log("Result: ", result);
+// console.log("Result2: ", result2);
 
 // function getSquareNumbers(numbs) {
 // //   let result = [];
@@ -23,3 +23,15 @@ console.log("Result2: ", result2);
 // // }
 // // const answer = getSquareNumbers([1, 2, 3]);
 // // console.log(answer);
+
+/* Project Standards:
+  - Logging standards
+  - Naming standards
+      function, method, variable => CAMEL case    goHome
+      class => PASCAL.                            MemberService
+      folder => KEBAB
+      css => SNAKE
+
+  - Error handling 
+
+*/
