@@ -5,6 +5,7 @@ import { MemberInput } from "../libs/types/member";
 import { MemberType } from "../libs/enums/member.enum";
 
 const restaurantController: T = {};
+
 restaurantController.goHome = (req: Request, res: Response) => {
   try {
     console.log("Home page");
@@ -41,10 +42,11 @@ restaurantController.processLogin = (req: Request, res: Response) => {
     console.error("Error, processLogin", err);
   }
 };
+
 restaurantController.processSignup = async (req: Request, res: Response) => {
   try {
     console.log(" processSignup");
-    console.log("body:", req.body);
+    //console.log("body:", req.body);
 
     const newMember: MemberInput = req.body;
     newMember.memberType = MemberType.RESTAURANT;
