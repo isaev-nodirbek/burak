@@ -77,3 +77,9 @@ Rest Api
 GraphQL Api
 .....
 */
+
+/*
+Traditional FD => SSR (Adminka)           => RJS
+
+Modern FD      => SPA (USER application)   => REACT
+*/
