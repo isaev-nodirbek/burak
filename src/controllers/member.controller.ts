@@ -16,6 +16,7 @@ memberController.signup = async (req: Request, res: Response) => {
 
     const input: MemberInput = req.body,
       result: Member = await memberService.signup(input);
+    // TODO: TOKENS AUTHENTICATION
 
     res.json({ member: result });
   } catch (err) {
@@ -31,6 +32,7 @@ memberController.login = async (req: Request, res: Response) => {
 
     const input: LoginInput = req.body,
       result = await memberService.login(input);
+    // TODO: TOKENS AUTHENTICATION
     res.json({ member: result });
   } catch (err) {
     console.error("Error, processLogin", err);

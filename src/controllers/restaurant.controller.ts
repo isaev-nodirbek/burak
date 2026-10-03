@@ -11,28 +11,28 @@ const restaurantController: T = {};
 restaurantController.goHome = (req: Request, res: Response) => {
   try {
     console.log("Home page");
-    res.send("Home Page");
+    res.render("home");
     // send | json | redirect | end | render
   } catch (err) {
     console.error("Error, goHome", err);
   }
 };
 
-restaurantController.getLogin = (req: Request, res: Response) => {
+restaurantController.getSignup = (req: Request, res: Response) => {
   try {
-    console.log("Login page");
-    res.send("Login Page");
+    console.log("getSignup page");
+    res.render("signup");
   } catch (err) {
-    console.error("Error, getLogin", err);
+    console.error("Error, getSignup", err);
   }
 };
 
-restaurantController.getSignup = (req: Request, res: Response) => {
+restaurantController.getLogin = (req: Request, res: Response) => {
   try {
-    console.log("Signup Page");
-    res.send("Signup Page");
+    console.log("getLogin page");
+    res.render("login");
   } catch (err) {
-    console.error("Error, getSignup", err);
+    console.error("Error, getLogin", err);
   }
 };
 
@@ -59,6 +59,7 @@ restaurantController.processSignup = async (req: Request, res: Response) => {
     newMember.memberType = MemberType.RESTAURANT;
 
     const result = await memberService.processSignup(newMember);
+    // TODO: SESSION AUTHENTICATION
 
     res.send(result);
   } catch (err) {
