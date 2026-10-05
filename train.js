@@ -83,3 +83,8 @@ Traditional FD => SSR (Adminka)           => RJS
 
 Modern FD      => SPA (USER application)   => REACT
 */
+
+/*
+request join
+self destroy
+*/
