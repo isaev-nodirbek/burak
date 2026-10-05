@@ -1,3 +1,28 @@
+// TASK R
+
+// Shunday function yozing, u string parametrga ega bo'lsin.
+// Agar argument sifatida berilayotgan string, "1 + 2" bo'lsa,
+// string ichidagi sonlarin yig'indisni hisoblab, number holatida qaytarsin
+
+// MASALAN: calculate("1 + 3"); return 4;
+// 1 + 3 = 4, shu sababli 4 natijani qaytarmoqda.
+
+function calculate(str: string): number {
+  const parts = str.split("+");
+  let sum = 0;
+
+  for (let i = 0; i < parts.length; i++) {
+    sum = sum + Number(parts[i]);
+  }
+
+  return sum;
+}
+
+const result = calculate("1 + 3");
+const result2 = calculate("10 + 20");
+console.log(result); // 4
+console.log(result2); // 30
+
 // TASK Q:
 
 // Shunday function yozing, u 2 ta parametrga ega bo'lib
@@ -8,23 +33,23 @@
 // MASALAN: hasProperty({ name: "BMW", model: "M3" }, "model"); return true;
 // Ushbu misolda, 'model' string, objectning propertysiga mos kelganligi uchun 'true' natijani qaytarmoqda
 
-function hasProperty(obj: Record<string, any>, prop: string): boolean {
-  // return prop in obj;
-  // return obj.hasOwnProperty(prop);
-  // return Object.keys(obj).includes(prop);
+// function hasProperty(obj: Record<string, any>, prop: string): boolean {
+//   // return prop in obj;
+//   // return obj.hasOwnProperty(prop);
+//   // return Object.keys(obj).includes(prop);
 
-  for (let key in obj) {
-    if (key === prop) {
-      return true;
-    }
-  }
-  return false;
-}
+//   for (let key in obj) {
+//     if (key === prop) {
+//       return true;
+//     }
+//   }
+//   return false;
+// }
 
-const result = hasProperty({ name: "BMW", model: "M3" }, "model");
-const result2 = hasProperty({ name: "BMW", model: "M3" }, "color");
-console.log(result); // true
-console.log(result2); // false
+// const result = hasProperty({ name: "BMW", model: "M3" }, "model");
+// const result2 = hasProperty({ name: "BMW", model: "M3" }, "color");
+// console.log(result); // true
+// console.log(result2); // false
 
 // TASK P:
 // Parametr sifatida yagona object qabul qiladigan function yozing.
