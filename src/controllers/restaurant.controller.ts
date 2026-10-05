@@ -64,7 +64,6 @@ restaurantController.processSignup = async (
     res.send(
       `<script> alert("${message}"); window.location.replace('admin/signup')</script>`,
     );
-    res.send(err);
   }
 };
 
@@ -116,7 +115,7 @@ restaurantController.checkAuthSession = async (
     else res.send(`<script> alert("${Message.NOT_AUTHENTICATED}")</script>`);
   } catch (err) {
     console.log("Error,checkAuthSession", err);
-    res.send(err);
+    res.send(`<script> alert("${Message.SOMETHING_WENT_WRONG}")</script>`);
   }
 };
 
