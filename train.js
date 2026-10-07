@@ -78,13 +78,19 @@ GraphQL Api
 .....
 */
 
-/*
+/* FRONTEND DEVELOPMENT
 Traditional FD => SSR (Adminka)           => RJS
 
 Modern FD      => SPA (USER application)   => REACT
 */
 
-/*
+/*COOKIES
 request join
 self destroy
+*/
+
+/* VALIDATION
+Fronend validation
+Backend validation
+Database validation
 */
