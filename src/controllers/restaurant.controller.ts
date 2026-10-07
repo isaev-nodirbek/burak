@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { T } from "../libs/types/common";
 import MemberService from "../models/Member.service";
 import { AdminRequest, LoginInput, MemberInput } from "../libs/types/member";
@@ -49,9 +49,7 @@ restaurantController.processSignup = async (
 
     const newMember: MemberInput = req.body;
     newMember.memberType = MemberType.RESTAURANT;
-
     const result = await memberService.processSignup(newMember);
-    // TODO: SESSION AUTHENTICATION
 
     req.session.member = result;
     req.session.save(function () {
@@ -74,7 +72,6 @@ restaurantController.processLogin = async (
   try {
     console.log("Process Login Page");
 
-    //console.log("body:", req.body);
     const input: LoginInput = req.body;
 
     const result = await memberService.processLogin(input);
@@ -116,6 +113,22 @@ restaurantController.checkAuthSession = async (
   } catch (err) {
     console.log("Error,checkAuthSession", err);
     res.send(`<script> alert("${Message.SOMETHING_WENT_WRONG}")</script>`);
+  }
+};
+
+restaurantController.verifyRestaurant = (
+  req: AdminRequest,
+  res: Response,
+  next: NextFunction,
+) => {
+  if (req.session?.member?.memberType === MemberType.RESTAURANT) {
+    req.member = req.session.member;
+    next();
+  } else {
+    const message = Message.NOT_AUTHENTICATED;
+    res.send(
+      `<script> alert("${message}"); window.location.replace('/admin/login')</script>`,
+    );
   }
 };
 

@@ -31,7 +31,7 @@ class MemberService {
     // TODO: Consider member Status later
     const member = await this.memberModel
       .findOne(
-        { memberNick: input.memberNick },
+        { memberNick: input.memberNick }, // object
         { memberNick: 1, memberPassword: 1 },
       )
       .exec();
