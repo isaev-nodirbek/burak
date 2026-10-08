@@ -1,14 +1,30 @@
+// TASK S:
+
+// Shunday function yozing, u numberlardan tashkil topgan array qabul qilsin va osha numberlar orasidagi tushib qolgan sonni topib uni return qilsin
+// MASALAN: missingNumber([3, 0, 1]) return 2
+function missingNumber(numbs) {
+  let sum = 0;
+  for (let i = 0; i <= numbs.length; i++) {
+    sum += i;
+  }
+  let totalSum = numbs.reduce((real, current) => real + current);
+  return sum - totalSum;
+}
+
+console.log(missingNumber([3, 0, 1])); // 2
+console.log(missingNumber([0, 1, 2])); // 3
+
 // TASK P:
 // Parametr sifatida yagona object qabul qiladigan function yozing.
 // Qabul qilingan objectni nested array sifatida convert qilib qaytarsin
 
 // MASALAN: objectToArray( {a: 10, b: 20}) return [['a', 10], ['b', 20]]
 
-function objectToArray(obj) {
-  return Object.keys(obj).map((key) => [key, obj[key]]);
-}
-const result = objectToArray({ a: 10, b: 20 });
-console.log("result: ", result);
+// function objectToArray(obj) {
+//   return Object.keys(obj).map((key) => [key, obj[key]]);
+// }
+// const result = objectToArray({ a: 10, b: 20 });
+// console.log("result: ", result);
 
 // TASK O:
 
