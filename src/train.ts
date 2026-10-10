@@ -12,10 +12,33 @@ function mergeSortedArrays(arr1: number[], arr2: number[]): number[] {
 }
 
 const result1 = mergeSortedArrays([0, 3, 4, 31], [4, 6, 31]);
-const result2 = mergeSortedArrays([3, 11, 5, 9], [13, 22, 21, 34, 33]);
+const result2 = mergeSortedArrays([2, 5, 6, 9, 33], [5, 7, 11, 22, 32]);
 console.log(result1);
 console.log(result2);
 
+// function mergeSortedArrays(arr1: number[], arr2: number[]): number[] {
+//   const result: number[] = [];
+//   let a = 0;
+//   let b = 0;
+
+//   while (a < arr1.length && b < arr2.length) {
+//     if (arr1[a] <= arr2[b]) {
+//       result.push(arr1[a++]);
+//     } else {
+//       result.push(arr2[b++]);
+//     }
+//   } // ikkala arraydagi sonlarni bir biriga solishtirib tahlaydi
+//   // agar ikkala array uzunligi bir xil bolmasa length  bir xil bolgunicha solishtiradi va ortiqcha qolgan son qolib ketadi
+
+//   while (a < arr1.length) result.push(arr1[a++]);
+//   while (b < arr2.length) result.push(arr2[b++]);
+//   // bizga ikkala array length har xil bolganida
+//   // solishtirilmay qolib ketgan sonlarni tartib boyicha qoshadi
+
+//   return result;
+// }
+// const result = mergeSortedArrays([0, 3, 4, 30], [4, 6, 31]);
+// console.log(result);
 // TASK S:
 
 // Shunday function yozing, u numberlardan tashkil topgan array qabul qilsin va osha numberlar orasidagi tushib qolgan sonni topib uni return qilsin
