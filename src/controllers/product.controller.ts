@@ -14,7 +14,6 @@ productController.getAllProducts = async (req: Request, res: Response) => {
   try {
     console.log("Get All Products");
     const data = await productService.getAllProducts();
-    console.log(data);
     res.render("products", { products: data });
   } catch (err) {
     console.error("Error, Get All Products", err);
@@ -32,6 +31,7 @@ productController.createNewProduct = async (
     console.log("req.files:", req.files);
 
     if (!req.files?.length)
+      // length will always be higher than 0
       throw new Errors(HttpCode.INTERNAL_SERVER_ERROR, Message.CREATE_FAILED);
 
     const data: ProductInput = req.body;

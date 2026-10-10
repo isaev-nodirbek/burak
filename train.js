@@ -1,18 +1,51 @@
+// TASK T
+
+// Shunday function tuzing, u sonlardan tashkil topgan 2'ta array qabul qilsin.
+// Va ikkala arraydagi sonlarni tartiblab bir arrayda qaytarsin.
+
+// MASALAN: mergeSortedArrays([0, 3, 4, 31], [4, 6, 30]); return [0, 3, 4, 4, 6, 30, 31];
+
+// Yuqoridagi misolda, ikkala arrayni birlashtirib, tartib raqam bo'yicha tartiblab qaytarmoqda.
+
+function mergeSortedArrays(arr1, arr2) {
+  const result = [];
+  let a = 0;
+  let b = 0;
+
+  while (a < arr1.length && b < arr2.length) {
+    if (arr1[a] <= arr2[b]) {
+      result.push(arr1[a++]);
+    } else {
+      result.push(arr2[b++]);
+    }
+  } // ikkala arraydagi sonlarni bir biriga solishtirib tahlaydi
+  // agar ikkala array uzunligi bir xil bolmasa length  bir xil bolgunicha solishtiradi va ortiqcha qolgan son qolib ketadi
+
+  while (a < arr1.length) result.push(arr1[a++]);
+  while (b < arr2.length) result.push(arr2[b++]);
+  // bizga ikkala array length har xil bolganida
+  // solishtirilmay qolib ketgan sonlarni tartib boyicha qoshadi
+
+  return result;
+}
+const result = mergeSortedArrays([0, 3, 4, 30], [4, 6, 31]);
+console.log(result);
+
 // TASK S:
 
 // Shunday function yozing, u numberlardan tashkil topgan array qabul qilsin va osha numberlar orasidagi tushib qolgan sonni topib uni return qilsin
 // MASALAN: missingNumber([3, 0, 1]) return 2
-function missingNumber(numbs) {
-  let sum = 0;
-  for (let i = 0; i <= numbs.length; i++) {
-    sum += i;
-  }
-  let totalSum = numbs.reduce((real, current) => real + current);
-  return sum - totalSum;
-}
+// function missingNumber(numbs) {
+//   let sum = 0;
+//   for (let i = 0; i <= numbs.length; i++) {
+//     sum += i;
+//   }
+//   let totalSum = numbs.reduce((real, current) => real + current);
+//   return sum - totalSum;
+// }
 
-console.log(missingNumber([3, 0, 1])); // 2
-console.log(missingNumber([0, 1, 2])); // 3
+// console.log(missingNumber([3, 0, 1])); // 2
+// console.log(missingNumber([0, 1, 2])); // 3
 
 // TASK P:
 // Parametr sifatida yagona object qabul qiladigan function yozing.

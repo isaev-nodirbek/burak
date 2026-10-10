@@ -1,21 +1,53 @@
+// TASK T
+
+// Shunday function tuzing, u sonlardan tashkil topgan 2'ta array qabul qilsin.
+// Va ikkala arraydagi sonlarni tartiblab bir arrayda qaytarsin.
+
+// MASALAN: mergeSortedArrays([0, 3, 4, 31], [4, 6, 30]); return [0, 3, 4, 4, 6, 30, 31];
+
+// Yuqoridagi misolda, ikkala arrayni birlashtirib, tartib raqam bo'yicha tartiblab qaytarmoqda.
+
+function mergeSortedArrays(arr1: number[], arr2: number[]): number[] {
+  const result: number[] = [];
+  let a = 0;
+  let b = 0;
+
+  while (a < arr1.length && b < arr2.length) {
+    if (arr1[a] <= arr2[b]) {
+      result.push(arr1[a++]);
+    } else {
+      result.push(arr2[b++]);
+    }
+  } // ikkala arraydagi sonlarni bir biriga solishtirib tahlaydi
+  // agar ikkala array uzunligi bir xil bolmasa length  bir xil bolgunicha solishtiradi va ortiqcha qolgan son qolib ketadi
+
+  while (a < arr1.length) result.push(arr1[a++]);
+  while (b < arr2.length) result.push(arr2[b++]);
+  // bizga ikkala array length har xil bolganida
+  // solishtirilmay qolib ketgan sonlarni tartib boyicha qoshadi
+
+  return result;
+}
+const result = mergeSortedArrays([0, 3, 4, 30], [4, 6, 31]);
+console.log(result);
 // TASK S:
 
 // Shunday function yozing, u numberlardan tashkil topgan array qabul qilsin va osha numberlar orasidagi tushib qolgan sonni topib uni return qilsin
 // MASALAN: missingNumber([3, 0, 1]) return 2
 
-function missingNumber(numbers: number[]): number {
-  const expectedSum = (numbers.length * (numbers.length + 1)) / 2;
-  let realSum = 0;
+// function missingNumber(numbers: number[]): number {
+//   const expectedSum = (numbers.length * (numbers.length + 1)) / 2;
+//   let realSum = 0;
 
-  for (const number of numbers) {
-    realSum += number;
-  }
+//   for (const number of numbers) {
+//     realSum += number;
+//   }
 
-  return expectedSum - realSum;
-}
+//   return expectedSum - realSum;
+// }
 
-const missing = missingNumber([3, 0, 1]);
-console.log(missing); // 2
+// const missing = missingNumber([3, 0, 1]);
+// console.log(missing); // 2
 
 // TASK R
 
