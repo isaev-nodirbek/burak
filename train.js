@@ -1,3 +1,31 @@
+// TASK U
+
+// Shunday function tuzing, uni number parametri bo'lsin.
+// Va bu function berilgan parametrgacha, 0'dan boshlab
+// oraliqda nechta toq sonlar borligini aniqlab return qilsi.
+
+// MASALAN: sumOdds(9) return 4; sumOdds(11) return 5;
+
+// Yuqoridagi birinchi misolda, argument sifatida, 9 berilmoqda.
+// Va 0'dan boshlab sanaganda 9'gacha 4'ta toq son mavjud.
+// Keyingi namunada ham xuddi shunday xolat takrorlanmoqda.
+
+function sumOdds(numbs) {
+  let count = 0;
+  for (let i = 0; i < numbs; i += 2) {
+    if (i + 1 < numbs) {
+      count++;
+    }
+  }
+  return count;
+}
+
+const result1 = sumOdds(9);
+const result2 = sumOdds(11);
+
+console.log(result1);
+console.log(result2);
+
 // TASK T
 
 // Shunday function tuzing, u sonlardan tashkil topgan 2'ta array qabul qilsin.
@@ -7,29 +35,29 @@
 
 // Yuqoridagi misolda, ikkala arrayni birlashtirib, tartib raqam bo'yicha tartiblab qaytarmoqda.
 
-function mergeSortedArrays(arr1, arr2) {
-  const result = [];
-  let a = 0;
-  let b = 0;
+// function mergeSortedArrays(arr1, arr2) {
+//   const result = [];
+//   let a = 0;
+//   let b = 0;
 
-  while (a < arr1.length && b < arr2.length) {
-    if (arr1[a] <= arr2[b]) {
-      result.push(arr1[a++]);
-    } else {
-      result.push(arr2[b++]);
-    }
-  } // ikkala arraydagi sonlarni bir biriga solishtirib tahlaydi
-  // agar ikkala array uzunligi bir xil bolmasa length  bir xil bolgunicha solishtiradi va ortiqcha qolgan son qolib ketadi
+//   while (a < arr1.length && b < arr2.length) {
+//     if (arr1[a] <= arr2[b]) {
+//       result.push(arr1[a++]);
+//     } else {
+//       result.push(arr2[b++]);
+//     }
+//   } // ikkala arraydagi sonlarni bir biriga solishtirib tahlaydi
+// agar ikkala array uzunligi bir xil bolmasa length  bir xil bolgunicha solishtiradi va ortiqcha qolgan son qolib ketadi
 
-  while (a < arr1.length) result.push(arr1[a++]);
-  while (b < arr2.length) result.push(arr2[b++]);
-  // bizga ikkala array length har xil bolganida
-  // solishtirilmay qolib ketgan sonlarni tartib boyicha qoshadi
+// while (a < arr1.length) result.push(arr1[a++]);
+// while (b < arr2.length) result.push(arr2[b++]);
+// bizga ikkala array length har xil bolganida
+// solishtirilmay qolib ketgan sonlarni tartib boyicha qoshadi
 
-  return result;
-}
-const result = mergeSortedArrays([0, 3, 4, 30], [4, 6, 31]);
-console.log(result);
+//   return result;
+// }
+// const result = mergeSortedArrays([0, 3, 4, 30], [4, 6, 31]);
+// console.log(result);
 
 // TASK S:
 
