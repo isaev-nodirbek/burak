@@ -10,6 +10,7 @@ const productService = new ProductService();
 
 /** SSR */
 const productController: T = {};
+
 productController.getAllProducts = async (req: Request, res: Response) => {
   try {
     console.log("Get All Products");
