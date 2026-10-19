@@ -1,6 +1,10 @@
 <%- include('includes/header') %>
 
 <link rel="stylesheet" type="text/css" href="/css/signup.css" />
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+/>
 
 <body>
   <div class="signup-container">
@@ -52,6 +56,13 @@
               placeholder="Password"
               value=""
             />
+            <button
+              type="button"
+              class="toggle-password"
+              aria-label="Show password"
+            >
+              <i class="fa-regular fa-eye"></i>
+            </button>
           </div>
           <div class="sign-up-frame">
             <label>Repeat password *</label>

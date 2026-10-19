@@ -165,6 +165,50 @@
   color: #4f547b;
 }
 
+/* Confirm password: real-time tekshiruv ranglari */
+.signup-container .sign-up-frame input.confirm-password.input-error {
+  border: 2px solid #e74c3c;
+  background: #fdecea;
+  outline: none;
+}
+
+.signup-container .sign-up-frame input.confirm-password.input-success {
+  border: 2px solid #2ecc71;
+  outline: none;
+}
+
+/* Parol inputiga ko'z ikonkasi uchun joy */
+.signup-container .sign-up-frame input.member-password,
+.signup-container .sign-up-frame input.confirm-password {
+  padding-right: 50px;
+}
+
+/* Ko'z tugmasi */
+.signup-container .sign-up-frame .toggle-password {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 50px;
+  height: 55px; /* input balandligi bilan bir xil */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #6a7a99;
+  font-size: 18px;
+}
+
+.signup-container .toggle-password:focus,
+.signup-container .toggle-password:active,
+.signup-container .toggle-password:focus-visible {
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+
 /* Background animation */
 @-webkit-keyframes gradient {
   0% {
