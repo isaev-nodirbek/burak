@@ -25,22 +25,23 @@ $(function () {
   $(".new-product-status").on("change", async function (e) {
     const id = e.target.id;
     const productStatus = $(`#${id}.new-product-status`).val();
-    console.log("id: ", id);
-    console.log("productStatus:", productStatus);
+    console.log(id);
+    console.log("====================================");
+    console.log(productStatus);
 
     try {
       const response = await axios.post(`/admin/product/${id}`, {
         productStatus: productStatus,
       });
-      console.log("response:", response);
       const result = response.data;
+
       if (result.data) {
-        console.log("Product Updated");
+        console.log("Product updated");
+        console.log("====================================");
         $(".new-product-status").blur();
-      } else alert("Product update failed");
+      } else alert("Update failed");
     } catch (err) {
-      console.log(err);
-      alert("Product update failed!");
+      alert("Product update failed");
     }
   });
 });

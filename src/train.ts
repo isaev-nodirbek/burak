@@ -1,3 +1,25 @@
+// TASK W
+
+// Shunday function yozing, u o'ziga parametr sifatida
+// yagona array va number qabul qilsin. Siz tuzgan function
+// arrayni numberda berilgan uzunlikda kesib bo'laklarga
+// ajratgan holatida qaytarsin.
+// MASALAN: chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3);
+// return [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10]];
+
+// Yuqoridagi namunada berilayotgan array ikkinchi parametr 3'ga
+// asoslanib 3 bo'lakga bo'linib qaytmoqda. Qolgani esa o'z holati qolyapti
+function chunkArray(arr: number[], size: number): number[][] {
+  if (size <= 0) throw new Error(" size 0 bo'lishi mumkin emas");
+  const result: number[][] = [];
+  for (let i = 0; i < arr.length; i += size) {
+    result.push(arr.slice(i, i + size));
+  }
+  return result;
+}
+const result = chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3);
+console.log(result);
+
 // TASK V
 
 // Shunday function yozing, uni string parametri bo'lsin.
@@ -10,24 +32,24 @@
 // qatnashgan harflar necha marotaba takrorlangini bilan
 // object sifatida qaytarilmoqda.
 
-function countChars(str: string): Record<string, number> {
-  const result: Record<string, number> = {};
+// function countChars(str: string): Record<string, number> {
+//   const result: Record<string, number> = {};
 
-  for (const letter of str) {
-    if (letter in result) {
-      result[letter]++;
-    } else {
-      result[letter] = 1;
-    }
-  }
-  return result;
-}
+//   for (const letter of str) {
+//     if (letter in result) {
+//       result[letter]++;
+//     } else {
+//       result[letter] = 1;
+//     }
+//   }
+//   return result;
+// }
 
-const answer1 = countChars("hello");
-const answer2 = countChars("NanoN");
+// const answer1 = countChars("hello");
+// const answer2 = countChars("NanoN");
 
-console.log("answer: ", answer1);
-console.log("answer: ", answer2);
+// console.log("answer: ", answer1);
+// console.log("answer: ", answer2);
 
 // TASK U
 
