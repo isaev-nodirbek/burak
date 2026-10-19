@@ -6,7 +6,7 @@ import {
   MemberUpdateInput,
 } from "../libs/types/member";
 import Errors, { HttpCode, Message } from "../libs/Errors";
-import { MemberType } from "../libs/enums/member.enum";
+import { MemberStatus, MemberType } from "../libs/enums/member.enum";
 import * as bycript from "bcryptjs";
 import { shapeIntoMongooseObjectid } from "../libs/config";
 
@@ -37,12 +37,18 @@ class MemberService {
     // TODO: Consider member Status later
     const member = await this.memberModel
       .findOne(
-        { memberNick: input.memberNick }, // object
-        { memberNick: 1, memberPassword: 1 },
+        {
+          memberNick: input.memberNick,
+          MemberStatus: { $ne: MemberStatus.DELETE },
+        }, // object
+        { memberNick: 1, memberPassword: 1, memberStatus: 1 },
       )
       .exec();
 
     if (!member) throw new Errors(HttpCode.NOT_FOUND, Message.NO_MEMBER_NICK);
+    else if (member.memberStatus === MemberStatus.BLOCK) {
+      throw new Errors(HttpCode.FORBIDDEN, Message.BLOCKED_USER);
+    }
 
     const isMatch = await bycript.compare(
       input.memberPassword,
