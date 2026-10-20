@@ -23,7 +23,7 @@ $(function () {
           $(".member-status").blur();
         } else alert("User update failed");
       })
-      .atch((err) => {
+      .catch((err) => {
         console.log(err);
         alert("User update failed");
       });
