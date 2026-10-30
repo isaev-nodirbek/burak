@@ -34,12 +34,11 @@ class MemberService {
   }
 
   public async login(input: LoginInput): Promise<Member> {
-    // TODO: Consider member Status later
     const member = await this.memberModel
       .findOne(
         {
           memberNick: input.memberNick,
-          MemberStatus: { $ne: MemberStatus.DELETE },
+          memberStatus: { $ne: MemberStatus.DELETE },
         }, // object
         { memberNick: 1, memberPassword: 1, memberStatus: 1 },
       )
