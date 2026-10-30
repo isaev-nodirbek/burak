@@ -3,6 +3,7 @@ import { T } from "../libs/types/common";
 import MemberService from "../models/Member.service";
 import { LoginInput, Member, MemberInput } from "../libs/types/member";
 import Errors from "../libs/Errors";
+import AuthService from "../models/Auth.service";
 
 // REACT
 
@@ -16,7 +17,8 @@ memberController.signup = async (req: Request, res: Response) => {
 
     const input: MemberInput = req.body,
       result: Member = await memberService.signup(input); // call
-    // TODO: TOKENS AUTHENTICATION
+    const token = await AuthService.createToken(result);
+    console.log("token =>", token);
 
     res.json({ member: result });
   } catch (err) {
@@ -31,8 +33,9 @@ memberController.login = async (req: Request, res: Response) => {
     console.log("login");
 
     const input: LoginInput = req.body,
-      result = await memberService.login(input);
-    // TODO: TOKENS AUTHENTICATION
+      result = await memberService.login(input),
+      token = await AuthService.createToken(result);
+    console.log("token =>  ", token);
     res.json({ member: result });
   } catch (err) {
     console.error("Error, processLogin", err);
