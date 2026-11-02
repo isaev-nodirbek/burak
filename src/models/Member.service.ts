@@ -73,7 +73,7 @@ class MemberService {
   public async getMemberDetail(member: Member): Promise<Member> {
     const memberId = shapeIntoMongooseObjectid(member._id);
     const result = await this.memberModel
-      .findOne({ _id: memberId, MemberStatus: MemberStatus.ACTIVE })
+      .findOne({ _id: memberId, memberStatus: MemberStatus.ACTIVE })
       .exec();
     if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
 
@@ -95,7 +95,7 @@ class MemberService {
 
   public async getTopUsers(): Promise<Member[]> {
     const result = await this.memberModel
-      .find({ memberStatus: MemberStatus.ACTIVE, memberPoints: { $gt: 1 } })
+      .find({ memberStatus: MemberStatus.ACTIVE, memberPoints: { $gte: 1 } })
       .sort({ memberPoints: -1 })
       .limit(4)
       .exec();
