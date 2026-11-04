@@ -1,5 +1,7 @@
+import { Types } from "mongoose";
 import { shapeIntoMongooseObjectid } from "../libs/config";
 import { ProductStatus } from "../libs/enums/product.enum";
+import { ViewGroup } from "../libs/enums/view.enum";
 import Errors, { HttpCode, Message } from "../libs/Errors";
 import { T } from "../libs/types/common";
 import {
@@ -8,13 +10,17 @@ import {
   ProductInquiry,
   ProductUpdateInput,
 } from "../libs/types/product";
+import { ViewInput } from "../libs/types/view";
 import ProductModel from "../schema/Product.model";
+import ViewService from "./View.service";
 
 class ProductService {
   private readonly productModel;
+  public viewService;
 
   constructor() {
     this.productModel = ProductModel;
+    this.viewService = new ViewService();
   }
 
   /** SPA */
@@ -42,6 +48,50 @@ class ProductService {
       ])
       .exec();
     if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+
+    return result;
+  }
+
+  public async getProduct(
+    memberId: Types.ObjectId | null,
+    id: string,
+  ): Promise<Product> {
+    const productId = shapeIntoMongooseObjectid(id);
+
+    let result = await this.productModel
+      .findOne({ _id: productId, productStatus: ProductStatus.PROCESS })
+      .exec();
+
+    if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+
+    //if authenticated and at the first time ==> view add
+    if (memberId) {
+      // Check Exist the same meber
+      const input: ViewInput = {
+        // @ts-ignore
+        memberId: memberId,
+        viewRefId: productId,
+        viewGroup: ViewGroup.PRODUCT,
+      };
+      const existView = await this.viewService.checkViewExistence(input);
+
+      console.log("exist", !!existView);
+
+      if (!existView) {
+        // Insert View
+        console.log("Plannning insert");
+        await this.viewService.insertMemberView(input);
+
+        // Increase count
+        const result = await this.productModel
+          .findByIdAndUpdate(
+            productId,
+            { $inc: { productViews: +1 } },
+            { new: true },
+          )
+          .exec();
+      }
+    }
 
     return result;
   }
