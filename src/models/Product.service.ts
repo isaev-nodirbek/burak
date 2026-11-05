@@ -13,6 +13,7 @@ import {
 import { ViewInput } from "../libs/types/view";
 import ProductModel from "../schema/Product.model";
 import ViewService from "./View.service";
+import { ObjectId } from "mongoose";
 
 class ProductService {
   private readonly productModel;
@@ -53,7 +54,7 @@ class ProductService {
   }
 
   public async getProduct(
-    memberId: Types.ObjectId | null,
+    memberId: ObjectId | null,
     id: string,
   ): Promise<Product> {
     const productId = shapeIntoMongooseObjectid(id);
@@ -83,7 +84,7 @@ class ProductService {
         await this.viewService.insertMemberView(input);
 
         // Increase count
-        const result = await this.productModel
+        result = await this.productModel
           .findByIdAndUpdate(
             productId,
             { $inc: { productViews: +1 } },
