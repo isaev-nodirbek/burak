@@ -14,16 +14,19 @@ const productController: T = {};
 productController.getProducts = async (req: Request, res: Response) => {
   try {
     console.log("getProducts");
-
+    // object destructuring
     const { page, limit, order, productCollection, search } = req.query;
+    // maburiy bo'lishi kerak bo'lgan query parametrlari
     const inquiry: ProductInquiry = {
       order: String(order),
       page: Number(page),
       limit: Number(limit),
     };
+
     if (productCollection) {
       inquiry.productCollection = productCollection as ProductCollection;
     }
+
     if (search) inquiry.search = String(search);
 
     const result = await productService.getProducts(inquiry);

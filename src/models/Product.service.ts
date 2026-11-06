@@ -58,7 +58,7 @@ class ProductService {
     id: string,
   ): Promise<Product> {
     const productId = shapeIntoMongooseObjectid(id);
-
+    // schema model
     let result = await this.productModel
       .findOne({ _id: productId, productStatus: ProductStatus.PROCESS })
       .exec();
@@ -74,6 +74,7 @@ class ProductService {
         viewRefId: productId,
         viewGroup: ViewGroup.PRODUCT,
       };
+      // service model
       const existView = await this.viewService.checkViewExistence(input);
 
       console.log("exist", !!existView);
@@ -84,6 +85,7 @@ class ProductService {
         await this.viewService.insertMemberView(input);
 
         // Increase count
+        // schema model
         result = await this.productModel
           .findByIdAndUpdate(
             productId,
