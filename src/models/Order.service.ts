@@ -62,30 +62,30 @@ class OrderService {
       await this.orderItemModel.create(item);
       return "INSERTED";
     });
-
+    console.log("promisedList:", promisedList);
     const orderItemsState = await Promise.all(promisedList);
     console.log("orderItemsState:", orderItemsState);
   }
 
   public async getMyOrders(
-    member: Member,
-    inquiry: OrderInquiry,
+    member: Member, // kimning orderlarini olish kerak
+    inquiry: OrderInquiry, // page, limit, orderStatus
   ): Promise<Order[]> {
     const memberId = shapeIntoMongooseObjectid(member._id);
     const matches = { memberId: memberId, orderStatus: inquiry.orderStatus };
 
     const result = await this.orderModel
       .aggregate([
-        { $match: matches },
-        { $sort: { updatedAt: -1 } },
-        { $skip: (inquiry.page - 1) * inquiry.limit },
-        { $limit: inquiry.limit },
+        { $match: matches }, // Filter orders by memberId and orderStatus
+        { $sort: { updatedAt: -1 } }, // Sort orders by updatedAt in descending order
+        { $skip: (inquiry.page - 1) * inquiry.limit }, // Skip orders based on the page and limit
+        { $limit: inquiry.limit }, // Limit the number of orders returned based on the limits
         {
           $lookup: {
-            from: "orderItems",
-            localField: "_id",
-            foreignField: "orderId",
-            as: "orderItems",
+            from: "orderItems", // qayerdan lookup qilinadi
+            localField: "_id", // qaysi field bilan join qilinadi
+            foreignField: "orderId", // qaysi field bilan join qilinadi
+            as: "orderItems", // lookup qilingan data qaysi fieldga saqlanadi
           },
         },
         {
@@ -100,7 +100,7 @@ class OrderService {
       .exec();
     if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
 
-    return result as Order[];
+    return result;
   }
 
   public async updateOrder(
@@ -113,20 +113,19 @@ class OrderService {
 
     const result = await this.orderModel
       .findOneAndUpdate(
-        { memberId: memberId, _id: orderId },
-        { orderStatus: orderStatus },
-        { new: true },
+        { memberId: memberId, _id: orderId }, // find the order by memberId and orderId
+        { orderStatus: orderStatus }, // update the orderStatus field
+        { new: true }, // return the updated document
       )
       .exec();
 
     if (!result) throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
 
-    /** orderStatus: PAUSE => orderStatus: PROCESS, +1 point */
+    /** orderStatus: PAUSE => orderStatus: PROCESS +1 point */
     if (orderStatus === OrderStatus.PROCESS) {
       await this.memberService.addUserPoint(member, 1);
     }
 
-    // @ts-ignore
     return result;
   }
 }

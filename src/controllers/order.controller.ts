@@ -26,9 +26,10 @@ orderController.getMyOrders = async (req: ExtendedRequest, res: Response) => {
   try {
     console.log("getMyOrders");
     const { page, limit, orderStatus } = req.query;
+    console.log("req.query:", req.query);
     const inquiry: OrderInquiry = {
-      page: Number(page),
-      limit: Number(limit),
+      page: Number(page), // Convert to number
+      limit: Number(limit), // Convert to number
       orderStatus: orderStatus as OrderStatus,
     };
 
@@ -47,6 +48,7 @@ orderController.updateOrder = async (req: ExtendedRequest, res: Response) => {
   try {
     console.log("updateOrder");
     const input: OrderUpdateInput = req.body;
+    console.log("input:", input);
     const result = await orderService.updateOrder(req.member, input);
 
     res.status(HttpCode.CREATED).json(result);
