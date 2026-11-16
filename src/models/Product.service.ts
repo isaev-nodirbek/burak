@@ -32,6 +32,7 @@ class ProductService {
     if (inquiry.productCollection)
       match.productCollection = inquiry.productCollection;
     if (inquiry.search) {
+      // case insensitive search
       match.productName = { $regex: new RegExp(inquiry.search, "i") };
     }
 
@@ -67,9 +68,8 @@ class ProductService {
 
     //if authenticated and at the first time ==> view add
     if (memberId) {
-      // Check Exist the same meber
+      // Check Exist the same member
       const input: ViewInput = {
-        // @ts-ignore
         memberId: memberId,
         viewRefId: productId,
         viewGroup: ViewGroup.PRODUCT,
@@ -82,6 +82,7 @@ class ProductService {
       if (!existView) {
         // Insert View
         console.log("Plannning insert");
+        // service model
         await this.viewService.insertMemberView(input);
 
         // Increase count

@@ -43,7 +43,7 @@ memberController.signup = async (req: Request, res: Response) => {
 
     // Saving token to cookies
     res.cookie("accessToken", token, {
-      maxAge: AUTH_TIMER * 3600 * 1000,
+      maxAge: AUTH_TIMER * 3600 * 1000, // 1 hour
       httpOnly: false,
     });
 
@@ -64,7 +64,7 @@ memberController.login = async (req: Request, res: Response) => {
       token = await AuthService.createToken(result);
 
     res.cookie("accessToken", token, {
-      maxAge: AUTH_TIMER * 3600 * 1000,
+      maxAge: AUTH_TIMER * 3600 * 1000, // 1 hour
       httpOnly: false,
     });
 

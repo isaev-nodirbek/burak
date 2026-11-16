@@ -35,11 +35,11 @@ class OrderService {
     const delivery = amount < 100 ? 5 : 0;
 
     try {
-      const newOrder = (await this.orderModel.create({
+      const newOrder: Order = await this.orderModel.create({
         orderTotal: amount + delivery,
         orderDelivery: delivery,
         memberId: memberId,
-      })) as unknown as Order;
+      });
 
       const orderId = newOrder._id;
       console.log("orderId:", orderId); //@ts-ignore
@@ -56,13 +56,17 @@ class OrderService {
     orderId: ObjectId,
     input: OrderItemInput[],
   ): Promise<void> {
+    // map orqali har bir item uchun create qilamiz va Promise.all bilan kutamiz
+    // Bu yerda map ishlatiladi chunki map ichida async function ishlatiladi va Promise.all bilan kutishimiz kerak
     const promisedList = input.map(async (item: OrderItemInput) => {
       item.orderId = orderId;
+      // secure qilish uchun productId ni ObjectId ga o'zgartiramiz
       item.productId = shapeIntoMongooseObjectid(item.productId);
       await this.orderItemModel.create(item);
       return "INSERTED";
     });
     console.log("promisedList:", promisedList);
+    // Promise.all bilan barcha itemlar create qilinishini kutamiz
     const orderItemsState = await Promise.all(promisedList);
     console.log("orderItemsState:", orderItemsState);
   }

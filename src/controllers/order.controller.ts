@@ -9,6 +9,7 @@ import { OrderInquiry, OrderUpdateInput } from "../libs/types/order";
 const orderService = new OrderService();
 
 const orderController: T = {};
+
 orderController.createOrder = async (req: ExtendedRequest, res: Response) => {
   try {
     console.log("createOrder");
@@ -26,6 +27,7 @@ orderController.getMyOrders = async (req: ExtendedRequest, res: Response) => {
   try {
     console.log("getMyOrders");
     const { page, limit, orderStatus } = req.query;
+    // querydan string sifatida keladi, shuning uchun uni numberga o'zgartirishimiz kerak
     console.log("req.query:", req.query);
     const inquiry: OrderInquiry = {
       page: Number(page), // Convert to number
